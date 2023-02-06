@@ -3,6 +3,7 @@ package com.example.sampleapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sampleapp.cam.CamActivity
 import com.example.sampleapp.databinding.ActivityMainBinding
 import com.example.sampleapp.lab_maya.LabMayaActivity
 import com.example.sampleapp.vr.VrActivity
@@ -30,6 +31,15 @@ class MainActivity : AppCompatActivity() {
                 Intent(
                     this,
                     VrActivity::class.java
+                )
+            )
+        }
+
+        binding.btnCam.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    CamActivity::class.java
                 )
             )
         }
