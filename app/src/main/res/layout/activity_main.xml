@@ -14,4 +14,16 @@
         android:layout_height="wrap_content"
         android:text="Lab Maya" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_vr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Virtual Reality" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_cam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assessment Cam" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

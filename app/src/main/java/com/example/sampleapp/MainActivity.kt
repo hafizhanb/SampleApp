@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sampleapp.databinding.ActivityMainBinding
 import com.example.sampleapp.lab_maya.LabMayaActivity
+import com.example.sampleapp.vr.VrActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,15 @@ class MainActivity : AppCompatActivity() {
                 Intent(
                     this,
                     LabMayaActivity::class.java
+                )
+            )
+        }
+
+        binding.btnVr.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    VrActivity::class.java
                 )
             )
         }
