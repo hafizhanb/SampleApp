@@ -2,10 +2,8 @@ package com.example.sampleapp.cam
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sampleapp.R
 import com.example.sampleapp.databinding.ActivityCamBinding
@@ -24,23 +22,6 @@ class CamActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolbar.setNavigationOnClickListener { finish() }
         setupStickyDraggable()
-        setFragment()
-    }
-
-    private fun setFragment() {
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        binding.fragmentContainer.layoutParams = ViewGroup.LayoutParams(
-            displayMetrics.widthPixels / 5,
-            displayMetrics.heightPixels / 5
-        )
-        supportFragmentManager.beginTransaction().apply {
-            replace(
-                R.id.fragment_container,
-                CameraFragment(),
-                CameraFragment::class.java.simpleName
-            )
-        }.commit()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -84,6 +65,18 @@ class CamActivity : AppCompatActivity() {
             }
             true
         }
+
+        val params = binding.fragmentContainer.layoutParams
+        params.height = 4 * 72
+        params.width = 3 * 72
+        binding.fragmentContainer.layoutParams = params
+        supportFragmentManager.beginTransaction().apply {
+            replace(
+                R.id.fragment_container,
+                CameraFragment(),
+                CameraFragment::class.java.simpleName
+            )
+        }.commit()
     }
 
 }
