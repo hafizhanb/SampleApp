@@ -26,4 +26,10 @@
         android:layout_height="wrap_content"
         android:text="Assessment Cam" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_custom_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Webview" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

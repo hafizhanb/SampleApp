@@ -39,6 +39,7 @@ class CameraFragment : Fragment() {
         requireContext().getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
     }
     private lateinit var cameraExecutor: ExecutorService
+    private var cameraFacing = CameraSelector.LENS_FACING_FRONT
     private val displayListener = object : DisplayManager.DisplayListener {
         override fun onDisplayAdded(displayId: Int) = Unit
         override fun onDisplayRemoved(displayId: Int) = Unit
@@ -65,6 +66,11 @@ class CameraFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _fragmentCameraBinding = FragmentCameraDraggableBinding.inflate(inflater, container, false)
+        arguments?.getBoolean("isBack", false)?.let {
+            cameraFacing =
+                if (it) CameraSelector.LENS_FACING_BACK else CameraSelector.LENS_FACING_FRONT
+        }
+        Log.e(TAG, "onCreateView: $cameraFacing")
         return fragmentCameraBinding.root
     }
 
@@ -98,7 +104,7 @@ class CameraFragment : Fragment() {
         val cameraProvider = cameraProvider
             ?: throw IllegalStateException("Camera initialization failed.")
         val cameraSelector =
-            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_FRONT).build()
+            CameraSelector.Builder().requireLensFacing(cameraFacing).build()
         preview = Preview.Builder()
             .setTargetAspectRatio(RATIO_4_3)
             .setTargetRotation(rotation)

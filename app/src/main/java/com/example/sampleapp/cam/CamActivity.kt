@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import com.example.sampleapp.R
 import com.example.sampleapp.databinding.ActivityCamBinding
 
@@ -21,6 +22,13 @@ class CamActivity : AppCompatActivity() {
         binding = ActivityCamBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbar.setNavigationOnClickListener { finish() }
+        supportFragmentManager.beginTransaction().apply {
+            replace(
+                R.id.fragment_container_main,
+                CameraFragment().also { x -> x.arguments = bundleOf("isBack" to true) },
+                CameraFragment::class.java.simpleName
+            )
+        }.commit()
         setupStickyDraggable()
     }
 
